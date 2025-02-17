@@ -1,15 +1,18 @@
-import CardContainer from "./CardContainer"
-import ExpenseDetail from "./ExpenseDetail"
-import TitleCard from "./TitleCard"
+import CardContainer from "../CommonComponents/CardContainer"
+import ExpenseDetail from "./SubRightCard/ExpenseDetail"
+import TitleCard from "./SubRightCard/TitleCard"
+import { useSelector } from "react-redux"
 
 const RightCard = () => {
+  const value = useSelector(state => state.budget)
+
   return (
     <CardContainer className="min-h-[590px]" title={null}>
       <div>
         <div className="flex items-center justify-around gap-2">
-          <TitleCard title="Total Budget" amount={1000} />
-          <TitleCard title="Total Expense" amount={1000} />
-          <TitleCard title="Budget Left" amount={1000} />
+          <TitleCard title="Total Budget" amount={value.budget} />
+          <TitleCard title="Total Expense" amount={value.expense} />
+          <TitleCard title="Budget Left" amount={value.budget - value.expense}/>
         </div>
         <hr className="mt-5 mb-3" />
         <h2 className="text-2xl mb-3 font-semibold">Expense History:</h2>
@@ -21,7 +24,7 @@ const RightCard = () => {
             <h3>Action</h3>
           </div>
           <hr />
-          <ExpenseDetail expenseName="Grocery" amount={1000} />
+          {/* <ExpenseDetail expenseName="Grocery" amount={1000} /> */}
         </div>
 
       </div>

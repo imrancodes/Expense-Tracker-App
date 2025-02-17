@@ -1,6 +1,6 @@
-import LeftBottomCard from "./LeftBottomCard"
-import LeftTopCard from "./LeftTopCard"
-import RightCard from "./RightCard"
+import LeftBottomCard from "./LeftCard/LeftBottomCard"
+import LeftTopCard from "./LeftCard/LeftTopCard"
+import RightCard from "./RightCard/RightCard"
 
 const Container = () => {
     return (
