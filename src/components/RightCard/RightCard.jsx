@@ -4,7 +4,7 @@ import TitleCard from "./SubRightCard/TitleCard"
 import { useSelector } from "react-redux"
 
 const RightCard = () => {
-  const value = useSelector(state => state.budget)
+  const value = useSelector(state => state.expense)
   const expenseValue = value.expenseDetail.reduce((sum, item) => sum + item.expense, 0)
 
   return (
@@ -13,7 +13,7 @@ const RightCard = () => {
         <div className="flex items-center justify-around gap-2">
           <TitleCard title="Total Budget" amount={value.budget} />
           <TitleCard title="Total Expense" amount={expenseValue} />
-          <TitleCard title="Budget Left" amount={value.budget - expenseValue}/>
+          <TitleCard title="Budget Left" amount={value.budget - expenseValue} />
         </div>
         <hr className="mt-5 mb-3" />
         <h2 className="text-2xl mb-3 font-semibold">Expense History:</h2>
@@ -25,7 +25,11 @@ const RightCard = () => {
             <h3>Action</h3>
           </div>
           <hr />
-          {/* <ExpenseDetail expenseName="Grocery" amount={1000} /> */}
+          {value.expenseDetail.map((expense) => (
+            <div key={expense.expenseTitle} className="w-full">
+              <ExpenseDetail expenseName={expense.expenseTitle} amount={expense.expense} />
+            </div>
+          ))}
         </div>
 
       </div>

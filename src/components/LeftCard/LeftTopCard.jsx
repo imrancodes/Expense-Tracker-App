@@ -3,13 +3,13 @@ import Button from "../CommonComponents/Button"
 import CardContainer from "../CommonComponents/CardContainer"
 import Input from "../CommonComponents/Input"
 import { useDispatch, useSelector } from "react-redux"
-import { setBudget } from "../../slices/budgetSlice"
+import { setBudget } from "../../slices/expenseSlice"
 import { useEffect } from "react"
 
 const LeftTopCard = () => {
   const [budgetValue, setBudgetValue] = useState("")
   const dispatch = useDispatch()
-  const currentBudget = useSelector(state => state.budget.budget)
+  const currentBudget = useSelector(state => state.expense.budget)
   const prevBudgetValue = useRef(currentBudget)
 
 
@@ -28,7 +28,7 @@ const LeftTopCard = () => {
     <CardContainer title="Add Budget">
       <form onSubmit={handleAddBudget}>
         <Input label="Budget:" placeholder='Enter Budget' type="number" value={budgetValue}
-          onValueChange={(value) => setBudgetValue(value)} />
+          onValueChange={(value) =>  setBudgetValue(value ? Number(value) : "")} required />
         <Button type="submit" text="Add Budget" classname="bg-[#007BFF] " />
       </form>
     </CardContainer>
