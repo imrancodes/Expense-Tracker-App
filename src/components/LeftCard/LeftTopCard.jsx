@@ -14,20 +14,23 @@ const LeftTopCard = () => {
 
 
 
-  useEffect(()=>{
+  useEffect(() => {
     prevBudgetValue.current = currentBudget
-  },[currentBudget])
+  }, [currentBudget])
 
-  const handleAddBudget = () => {
+  const handleAddBudget = (e) => {
+    e.preventDefault()
     dispatch(setBudget(Number(budgetValue + prevBudgetValue.current)))
     setBudgetValue("")
   }
 
   return (
     <CardContainer title="Add Budget">
-      <Input label="Budget:" placeholder='Enter Budget' type="number" value={budgetValue}
-        onValueChange={(value) => setBudgetValue(value)} />
-      <Button onClick={handleAddBudget} text="Add Budget" classname="bg-[#007BFF] " />
+      <form onSubmit={handleAddBudget}>
+        <Input label="Budget:" placeholder='Enter Budget' type="number" value={budgetValue}
+          onValueChange={(value) => setBudgetValue(value)} />
+        <Button type="submit" text="Add Budget" classname="bg-[#007BFF] " />
+      </form>
     </CardContainer>
   )
 }
