@@ -1,10 +1,10 @@
-import { configureStore } from "@reduxjs/toolkit";
-import expenseReducer from '../slices/expenseSlice'
+import { configureStore } from '@reduxjs/toolkit';
+import expenseReducer from '../slices/expenseSlice';
 
 const store = configureStore({
-    reducer:{
-        expense: expenseReducer
-    }
-})
+    reducer: {
+        expense: expenseReducer,
+    },
+});
 
-export default store
+export default store;
