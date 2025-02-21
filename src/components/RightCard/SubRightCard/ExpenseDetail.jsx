@@ -10,21 +10,21 @@ const ExpenseDetail = ({ expenseName, amount }) => {
     const currentBudget = useSelector((state) => state.expense.budget);
 
     const handleExpenseEdit = () => {
+        if (expenseValue > currentBudget) {
+            alert(
+                'Your expense is higher than your budget. Please adjust accordingly!'
+            );
+            return;
+        }
+
         dispatch(
             editExpense({
-                expense:
-                    expenseValue > currentBudget
-                        ? alert(
-                              'Your expense is higher than your budget. Please adjust accordingly!'
-                          )
-                        : expenseValue,
+                expense: expenseValue,
                 expenseTitle,
             })
         );
         setIsExpenseEditable(!isExpenseEditable);
-    };;
-
-    // console.log(expenseTitle, expenseValue);
+    };
 
     const handleExpenseDelete = () => {
         dispatch(deleteExpense(expenseName));
